@@ -1,0 +1,26 @@
+# This is a very basic configuration for a Cisco device
+# access privileged access mode
+enable 
+# access global configuration mode
+conf t
+# secures access to privileged access mode
+enable secret <password>
+# option!
+no ip domain-lookup
+# option!
+service password-encryption
+# create users as needed (at least one for ssh)
+username <user> secret <password>
+username <user> privilege <number> secret <password>2
+#change to specific configuration mode of linecon0
+line con 0
+password <password> 
+login
+exec-timeout <min sec>
+exit
+crypto key generate rsa
+<length>
+ip ssh version 2
+line vty 0 15 
+login local 
+exec-timeout <min sec>
